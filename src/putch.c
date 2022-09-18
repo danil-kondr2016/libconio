@@ -10,8 +10,3 @@ int _putch(int ch)
 		ch = -1;
 	return ch;
 }
-
-int putch(int ch)
-{
-	return _putch(ch);
-}

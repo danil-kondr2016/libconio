@@ -40,23 +40,7 @@ int _getch(void)
 		return _getch_buf[--_getch_c];
 }
 
-int getch(void)
-{
-	if (_getch_c < 1)
-		return _getchx(0);
-	else
-		return _getch_buf[--_getch_c];
-}
-
 int _getche(void)
-{
-	if (_getch_c < 1)
-		return _getchx(1);
-	else
-		return _getch_buf[--_getch_c];
-}
-
-int getche(void)
 {
 	if (_getch_c < 1)
 		return _getchx(1);
@@ -72,9 +56,4 @@ int _ungetch(int ch)
 	_getch_buf[_getch_c++] = ch;
 
 	return ch;
-}
-
-int ungetch(int ch)
-{
-	return _ungetch(ch);
 }

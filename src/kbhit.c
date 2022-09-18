@@ -38,8 +38,3 @@ int _kbhit(void)
 
 	return c;
 }
-
-int kbhit(void)
-{
-	return _kbhit();
-}
