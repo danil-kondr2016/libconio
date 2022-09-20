@@ -6,6 +6,14 @@
 extern "C" {
 #endif
 
+#if defined(__GNUC__)
+#define as_printf __attribute__((format(printf, 1, 2)))
+#define as_scanf __attribute__((format(scanf, 1, 2)))
+#else
+#define as_printf
+#define as_scanf
+#endif
+
 #define getch _getch
 #define getche _getche
 #define ungetch _ungetch
@@ -29,12 +37,12 @@ extern int _putch(int ch);
 extern int _cputs(const char * x);
 
 extern int _vcprintf(const char * fmt, va_list vl);
-extern int _cprintf(const char * fmt, ...);
+extern as_printf int _cprintf(const char * fmt, ...);
 
 extern char * _cgets(char * x);
 
 extern int _vcscanf(const char * fmt, va_list vl);
-extern int _cscanf(const char * fmt, ...);
+extern as_scanf int _cscanf(const char * fmt, ...);
 
 #ifdef __cplusplus
 }
