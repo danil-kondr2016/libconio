@@ -12,8 +12,10 @@ static int _getchx(int echo)
 {
 	struct termios o, n;
 	int c;
+	int fd;
 
-	tcgetattr(STDIN_FILENO, &o);
+	fd = open("/dev/tty", O_RDWR);
+	tcgetattr(fd, &o);
 
 	n = o;
 	n.c_lflag &= ~ICANON;
@@ -22,12 +24,13 @@ static int _getchx(int echo)
 	else
 		n.c_lflag |= ECHO;
 
-	tcsetattr(STDIN_FILENO, TCSANOW, &n);
+	tcsetattr(fd, TCSANOW, &n);
 
-	if (read(STDIN_FILENO, &c, 1) <= 0)
+	if (read(fd, &c, 1) <= 0)
 		c = -1;
 
-	tcsetattr(STDIN_FILENO, TCSANOW, &o);
+	tcsetattr(fd, TCSANOW, &o);
+	close(fd);
 
 	return c;
 }

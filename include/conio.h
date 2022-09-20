@@ -17,6 +17,9 @@ extern "C" {
 #define vcprintf _vcprintf
 #define cprintf _cprintf
 
+#define vcscanf _vcscanf
+#define cscanf _cscanf
+
 extern int _getch(void);
 extern int _getche(void);
 extern int _ungetch(int ch);
@@ -27,6 +30,9 @@ extern int _cputs(const char * x);
 
 extern int _vcprintf(const char * fmt, va_list vl);
 extern int _cprintf(const char * fmt, ...);
+
+extern int _vcscanf(const char * fmt, va_list vl);
+extern int _cscanf(const char * fmt, ...);
 
 #ifdef __cplusplus
 }

@@ -14,27 +14,29 @@ int _kbhit(void)
 	struct timeval tv;
 	fd_set set;
 	int c;
+	int fd;
 
+	fd = open("/dev/tty", O_RDWR);
 	memset(&tv, 0, sizeof(tv));
 
-	tcgetattr(STDIN_FILENO, &o);
+	tcgetattr(fd, &o);
 
 	n = o;
 	n.c_lflag &= ~(ICANON | ECHO);
-	tcsetattr(STDIN_FILENO, TCSANOW, &n);
+	tcsetattr(fd, TCSANOW, &n);
 
 	FD_ZERO(&set);
-	FD_SET(STDIN_FILENO, &set);
+	FD_SET(fd, &set);
 
 	select(1, &set, 0, 0, &tv);
 
-	if (FD_ISSET(STDIN_FILENO, &set)) {
+	if (FD_ISSET(fd, &set)) {
 		c = 1;
 	} else {
 		c = 0;
 	}
 
-	tcsetattr(STDIN_FILENO, TCSANOW, &o);
+	tcsetattr(fd, TCSANOW, &o);
 
 	return c;
 }

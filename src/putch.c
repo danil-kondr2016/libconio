@@ -6,7 +6,11 @@
 
 int _putch(int ch)
 {
-	if (write(STDOUT_FILENO, &ch, 1) <= 0)
+	int fd;
+
+	fd = open("/dev/tty", O_RDWR);
+	if (write(fd, &ch, 1) <= 0)
 		ch = -1;
+	close(fd);
 	return ch;
 }
