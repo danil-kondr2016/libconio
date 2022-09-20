@@ -1,5 +1,6 @@
 OBJS=src/getch.o src/putch.o src/kbhit.o
 OBJS+=src/cprintf.o src/cputs.o src/cscanf.o
+OBJS+=src/cgets.o
 CFLAGS=-Iinclude/
 
 PREFIX=/usr/local
