@@ -31,6 +31,8 @@ extern int _cputs(const char * x);
 extern int _vcprintf(const char * fmt, va_list vl);
 extern int _cprintf(const char * fmt, ...);
 
+extern char * _cgets(char * x);
+
 extern int _vcscanf(const char * fmt, va_list vl);
 extern int _cscanf(const char * fmt, ...);
 
